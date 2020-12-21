@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
+import { v4 as uuid } from "uuid";
 
 const AddMovie = ({ addMovies }) => {
   const [title, setTitle] = useState("");
@@ -7,19 +8,23 @@ const AddMovie = ({ addMovies }) => {
   const [genre, setGenre] = useState("");
   const [poster, setPoster] = useState("");
   const [rate, setRate] = useState("");
+  const [id, setId] = useState(uuid);
+  const [description, setDescription] = useState("");
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addMovies(title, date, genre, poster, rate);
+    addMovies(title, date, genre, poster, rate, id, description);
     setTitle("");
     setDate("");
     setGenre("");
     setPoster("");
     setRate("");
     setShow(false);
+    setId();
+    setDescription("");
   };
 
   return (
@@ -67,6 +72,13 @@ const AddMovie = ({ addMovies }) => {
             placeholder="Rate"
             value={rate}
             onChange={(e) => setRate(e.target.value)}
+          />
+          <input
+            type="text"
+            id="description"
+            placeholder="Movie Description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
           />
         </Modal.Body>
         <Modal.Footer>

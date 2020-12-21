@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
 import StarRatingComponent from "react-star-rating-component";
-//import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function MovieCard({ movie }) {
   return (
@@ -23,8 +23,11 @@ function MovieCard({ movie }) {
               value={movie.rate}
               emptyStarColor={"#fff"}
             />
+            <br />
+            <Link to={`/movie/${movie.id}`}>
+              <Button variant="primary">Discover More</Button>
+            </Link>
           </div>
-          <Button variant="primary">Discover More</Button>
         </Card.Body>
       </Card>
     </>
